@@ -1,5 +1,5 @@
 name: Second
-on: push
+on: [push, workflow_dispatch]
 
 jobs:
   first:
