@@ -3,6 +3,7 @@ on: push
 
 jobs:
   first:
+    needs: deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +28,6 @@ jobs:
         run: echo "Deploying ..."
 
   deploy:
-    needs: first
     runs-on: ubuntu-latest
     steps:
       - name: Build Project
