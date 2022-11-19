@@ -7,4 +7,4 @@ jobs:
 
     steps:
       - name: Output Github Context
-        run: echo "${{ toJSON(github) }}"
+        run: echo "${{ toJSON(github.pusher) }}"
