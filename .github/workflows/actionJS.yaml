@@ -1,11 +1,20 @@
-name: Display Website
+name: JS Project
 on:
   push:
     branches:
       - main
-
+      - dev
+env:
+  MONGODB_DB_NAME: prod
 jobs:
   test:
+    environment: testing
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.15pwqcc.mongodb.net
+      MONGODB_DB_NAME: ${{ secrets.MONGODB_DB_NAME }}
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME}}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD}}
+      PORT: 3000
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -23,8 +32,14 @@ jobs:
       - name: List Code
         run: npm run list
 
+      - name: Run Server
+        run: npm start & npx wait-on http://127.0.0.1:$PORT
+
       - name: Test Code
         run: npm run test
+
+      # - name: Output Information
+      # run: echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
 
   build:
     needs: test
