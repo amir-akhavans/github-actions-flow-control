@@ -1,5 +1,15 @@
 name: Third
-on: [push, workflow_dispatch]
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/qorkflows/*"
 
 jobs:
   info:
