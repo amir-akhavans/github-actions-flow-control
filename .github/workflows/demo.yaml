@@ -11,14 +11,14 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm ci
+      # - name: Install dependencies
+      #   run: npm ci
 
-      - name: List Code
-        run: npm run list
+      # - name: List Code
+      #   run: npm run list
 
-      - name: Test Code
-        run: npm run test
+      # - name: Test Code
+      #   run: npm run test
 
   build:
     needs: test
